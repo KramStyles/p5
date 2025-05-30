@@ -1,34 +1,29 @@
-let bubbles = [];
-const length = 50;
+let bubble1, bubble2;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  for (let index = 0; index < length; index++) {
-    const bubble = new Bubble(
-      random(500),
-      random(500),
-      random(100),
-      random(-10, 10),
-      random(-10, 10)
-    );
-    bubbles.push(bubble);
-  }
+  bubble1 = new Bubble(
+    200,
+    200,
+    60,
+    (xSpeed = random(5)),
+    (ySpeed = random(8))
+  );
+  bubble2 = new Bubble(400, 200, 100);
 }
 
 function draw() {
   background(20);
-  for (const bubble of bubbles) {
-    bubble.encourage();
-    for (const other of bubbles) {
-      if (bubble != other && bubble.intersects(other)) bubble.changeColor(250);
-    }
-  }
+  bubble1.show();
+  bubble2.show();
+  bubble1.move();
+  bubble2.move();
 
-  // if (bubble1.intersects(bubble2)) {
-  //   fill(100);
-  //   strokeWeight(4);
-  //   background(255, 255, 255, 100);
-  // }
+  if (bubble1.intersects(bubble2)) {
+    fill(100);
+    strokeWeight(4);
+    background(255, 255, 255, 100);
+  }
 }
 
 class Bubble {
@@ -75,14 +70,10 @@ class Bubble {
     }
   }
 
-  changeColor(value) {
-    this.alpha = value;
-  }
-
   encourage() {
     this.show();
     this.move();
-    if (this.rollover(mouseX, mouseY)) this.changeColor(125);
-    else this.changeColor(50);
+    if (this.rollover(mouseX, mouseY)) this.alpha = 125;
+    else this.alpha = 50;
   }
 }
