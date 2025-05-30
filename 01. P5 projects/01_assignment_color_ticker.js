@@ -9,17 +9,15 @@ function setup() {
 function draw() {
   fill(r, g, b);
   noStroke();
-  circle(mouseX, mouseY, circleSize);
-  makeRandom()
-}
-
-function mousePressed() {
-  background(0)
+  if (mouseIsPressed) {
+    makeRandom();
+  }
 }
 
 const makeRandom = () => {
-  r = random(255)
-  g = random(255)
-  b = random(255)
-  circleSize = random(25, 100)
-}
+  r = random(255);
+  g = random(255);
+  b = random(255);
+  circleSize = random(25, 100);
+  circle(mouseX, mouseY, circleSize);
+};
