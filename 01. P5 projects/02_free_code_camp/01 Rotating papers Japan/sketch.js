@@ -1,7 +1,7 @@
 let blocks = [];
 let cols;
 let rows;
-let size = 15;
+let size = 50;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
